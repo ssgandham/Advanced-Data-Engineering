@@ -14,3 +14,14 @@ from follow a inner join user b
 on a.followee = b.email
 group by (a.followee)
 order by b.name;
+
+-- 3
+select a.name,count(b.blurtid) as blurt_count from user a
+inner join blurt b
+on a.email=b.email
+where a.type='C'
+group by (a.name)
+order by blurt_count desc;
+
+select * from user where type='C';
+select * from blurt where email='Michael_Phelps@uss.net';
