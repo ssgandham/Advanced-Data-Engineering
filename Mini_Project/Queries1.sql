@@ -23,5 +23,5 @@ where a.type='C'
 group by (a.name)
 order by blurt_count desc;
 
-select * from user where type='C';
-select * from blurt where email='Michael_Phelps@uss.net';
+-- 4
+select name from user where email not in (select follower from follow) and type='C';
