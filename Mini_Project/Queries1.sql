@@ -31,7 +31,6 @@ select b.name, a.email,(select count(follower) from follow where followee=a.emai
 inner join vendor b on a.vendorid=b.id
 order by b.name;
 
-
 -- 6 
     create or replace view ads_perUser_perTopic as
     select u.email, ut.topicid, count(adid) as nr_of_ads
@@ -48,8 +47,9 @@ order by b.name;
     select email, topicid, count(blurtid) as nr_of_blurts
     from blurt_analysis
     group by email, topicid;
-    select * from blurts_perUser_perTopic;
-    select count(distinct(email)) from blurts_perUser_perTopic;
+    
+--     select * from blurts_perUser_perTopic;
+--     select count(distinct(email)) from blurts_perUser_perTopic;
     
 select v.name, count(distinct(b.email)) as ad_gap
 from (blurts_perUser_perTopic b left join ads_perUser_perTopic a  on b.email = a.email and b.topicid = a.topicid)
@@ -59,9 +59,9 @@ from (blurts_perUser_perTopic b left join ads_perUser_perTopic a  on b.email = a
     group by v.name
     order by ad_gap desc;
     
-select b.email, a.email, b.topicid, a.nr_of_ads, b.nr_of_blurts
-from (blurts_perUser_perTopic b left join ads_perUser_perTopic a  on b.email = a.email)
-where a.email is NULL;
+-- select b.email, a.email, b.topicid, a.nr_of_ads, b.nr_of_blurts
+-- from (blurts_perUser_perTopic b left join ads_perUser_perTopic a  on b.email = a.email)
+-- where a.email is NULL;
 
 -- 7
 

@@ -43,61 +43,27 @@ create table user
 		on delete cascade on update no action
 	)ENGINE=InnoDB DEFAULT CHARSET=latin1;
     
-    select * from blurt;
-    select * from blurt_analysis;
-    select * from advertisement;
-    select * from topic;
-    select * from advertisement;
-    select * from user_ad;
-    select * from vendor;
-    select * from vendor_ambassador;
-    
-    select b.email
-    from blurt_analysis b left join vendor_ambassador v on b.email = v.email
-    where v.email = null;
-    
-    select topicid, count(distinct(email)) as num_users
-    from blurt_analysis
-    group by topicid;
+--     select * from blurt;
+--     select * from blurt_analysis;
+--     select * from advertisement;
+--     select * from topic;
+--     select * from advertisement;
+--     select * from user_ad;
+--     select * from vendor;
+--     select * from vendor_ambassador;
+--     
+--     select b.email
+--     from blurt_analysis b left join vendor_ambassador v on b.email = v.email
+--     where v.email = null;
+--     
+--     select topicid, count(distinct(email)) as num_users
+--     from blurt_analysis
+--     group by topicid;
     
     
 --     use db_mini_project1;
 --     drop table db_mini_project1.ads_perUser_perTopic;
-    create or replace view ads_perUser_perTopic as
-    select u.email, ut.topicid, count(adid) as nr_of_ads
-    from user_ad u left join 
-    (select email, topicid
-    from blurt_analysis
-    group by email, topicid) as ut on u.email = ut.email
-    group by u.email, ut.topicid;
-    select * from ads_perUser_perTopic;
-    select count(distinct(email)) from ads_perUser_perTopic;
-    
-    
-    create or replace view blurts_perUser_perTopic as
-    select email, topicid, count(blurtid) as nr_of_blurts
-    -- into blurts_perUser_perTopic
-    from blurt_analysis
-    group by email, topicid;
-    select * from blurts_perUser_perTopic;
-    select count(distinct(email)) from blurts_perUser_perTopic;
-    
-    -- select b.topicid, a.nr_of_ads, b.nr_of_blurts, vt.vid
---     from blurts_perUser_perTopic b left join ads_perUser_perTopic a inner join vendor_topics as vt on b.topicid = a.topicid and b.topicid = vt.topicid
 
--- , vt.vendorid, v.name, b.topicid, a.nr_of_ads, b.nr_of_blurts, vt.vendorid, 
-select v.name, count(distinct(b.email)) as ad_gap
-from (blurts_perUser_perTopic b left join ads_perUser_perTopic a  on b.email = a.email and b.topicid = a.topicid)
-	left join vendor_topics vt on (b.topicid = vt.topicid)
-    left join vendor v on (vt.vendorid = v.id)
-    -- where nr_of_blurts > 0 and nr_of_ads = 0
-    where a.email is NULL or a.topicid is NULL
-    group by v.name
-    order by ad_gap desc;
-    
-select b.email, a.email, b.topicid, a.nr_of_ads, b.nr_of_blurts
-from (blurts_perUser_perTopic b left join ads_perUser_perTopic a  on b.email = a.email)
-where a.email is NULL;
 
     
     create table hobby
