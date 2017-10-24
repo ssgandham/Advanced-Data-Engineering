@@ -27,14 +27,55 @@ order by blurt_count desc;
 select name from user where email not in (select follower from follow) and type='C';
 
 -- 5
-select a.name, count(*) from vendor_ambassador a 
+select b.name, a.email,(select count(follower) from follow where followee=a.email) as 'Follower Count' from vendor_ambassador a 
 inner join vendor b on a.vendorid=b.id
-inner join follow c on a.email=c.followee
-group by (b.email);
+order by b.name;
+
 
 -- 6 
-select * from blurt_analysis a
-inner join vendor_topics b on a.topicid=b.topicid
-inner join vendor c on c.id=b.vendorid
-group by c.name
-order by a.confidence;
+    create or replace view ads_perUser_perTopic as
+    select u.email, ut.topicid, count(adid) as nr_of_ads
+    from user_ad u left join 
+    (select email, topicid
+    from blurt_analysis
+    group by email, topicid) as ut on u.email = ut.email
+    group by u.email, ut.topicid;
+    select * from ads_perUser_perTopic;
+    select count(distinct(email)) from ads_perUser_perTopic;
+    
+    
+    create or replace view blurts_perUser_perTopic as
+    select email, topicid, count(blurtid) as nr_of_blurts
+    from blurt_analysis
+    group by email, topicid;
+    select * from blurts_perUser_perTopic;
+    select count(distinct(email)) from blurts_perUser_perTopic;
+    
+select v.name, count(distinct(b.email)) as ad_gap
+from (blurts_perUser_perTopic b left join ads_perUser_perTopic a  on b.email = a.email and b.topicid = a.topicid)
+	left join vendor_topics vt on (b.topicid = vt.topicid)
+    left join vendor v on (vt.vendorid = v.id)
+    where a.email is NULL or a.topicid is NULL
+    group by v.name
+    order by ad_gap desc;
+    
+select b.email, a.email, b.topicid, a.nr_of_ads, b.nr_of_blurts
+from (blurts_perUser_perTopic b left join ads_perUser_perTopic a  on b.email = a.email)
+where a.email is NULL;
+
+-- 7
+
+-- select * from topic a 
+-- inner join blurt_analysis b on a.id=b.topicid
+-- inner join blurt c                 on c.blurtid=b.blurtid
+-- inner join user d on d.email=c.email
+-- where d.email  not in (select follower from follow where followee=;
+
+select * from user a 
+inner join blurt_analysis as c,blurt_analysis as d
+where c.topicid=d.topicid;
+
+
+select * from follow where followee='Albert_Carey@msn.com';
+
+
