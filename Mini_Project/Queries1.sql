@@ -65,17 +65,20 @@ from (blurts_perUser_perTopic b left join ads_perUser_perTopic a  on b.email = a
 
 -- 7
 
--- select * from topic a 
--- inner join blurt_analysis b on a.id=b.topicid
--- inner join blurt c                 on c.blurtid=b.blurtid
--- inner join user d on d.email=c.email
--- where d.email  not in (select follower from follow where followee=;
-
-select * from user a 
-inner join blurt_analysis as c,blurt_analysis as d
-where c.topicid=d.topicid;
-
-
-select * from follow where followee='Albert_Carey@msn.com';
+  select follower,followee
+ from follow;
+ 
+ create or replace view view_follow as
+ select followee,followeer
+ from follow
+ order by folloee;
+ 
+select *
+from blurt_analysis as a,blurt_analysis as b 
+inner join follow c
+inner join view_follow d on a.email = d.followee
+where a.topicid=b.topicid
+and a.email <> b.email
+order  by a.email;
 
 
