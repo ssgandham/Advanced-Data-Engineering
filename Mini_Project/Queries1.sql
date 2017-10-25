@@ -107,4 +107,27 @@ select * from follow where follower='Albert_Larson@hotmail.com' and followee='Al
 -- )
 -- ORDER BY t2.email;
 
+-- Query 8
+SELECT distinct A.NAME, B.NAME, c.NAME, A.email, B.email, C.email
+FROM USER A, USER B, USER c, FOLLOW F1, FOLLOW F2, FOLLOW F3 
+WHERE A.EMAIL = F1.FOLLOWER 
+AND F1.FOLLOWEE = B.EMAIL 
+AND B.EMAIL = F2.FOLLOWER 
+AND F2.FOLLOWEE = c.EMAIL 
+AND A.EMAIL <> F3.FOLLOWER 
+AND c.EMAIL <> F3.FOLLOWEE ;
 
+select * from follow where follower='Albert_Smith@msn.com' and followee='Albert_Helibron@yahoo.com';
+
+-- Query 9
+select * from blurt_analysis;
+
+create or replace view view_topic_count as
+select topicid,avg(sentiment) as avg_sentiment, count(blurtid) as blurt_count
+from blurt_analysis
+group by topicid
+order by avg_sentiment;
+
+select * from view_topic_count a
+inner join topic b on a.topicid=b.id
+where avg_sentiment<0;
