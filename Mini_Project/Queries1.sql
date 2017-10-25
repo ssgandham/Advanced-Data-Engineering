@@ -69,16 +69,42 @@ from (blurts_perUser_perTopic b left join ads_perUser_perTopic a  on b.email = a
  from follow;
  
  create or replace view view_follow as
- select followee,followeer
+ select follower, followee
  from follow
- order by folloee;
+ order by follower;
  
-select *
+ create or replace view view_results as
+select a.email as follower,b.email as followee
 from blurt_analysis as a,blurt_analysis as b 
-inner join follow c
-inner join view_follow d on a.email = d.followee
+-- inner join follow c
+-- inner join view_follow d on a.email = d.followee
 where a.topicid=b.topicid
 and a.email <> b.email
+-- and a.topicid='6'
 order  by a.email;
+
+select distinct b.follower, b.followee, c.name,d.name from view_follow a
+right join view_results b
+on a.follower=b.follower and a.followee=b.followee
+inner join user c on c.email = b.follower
+inner join user d on d.email = b.followee
+where a.follower is null;
+
+select * from follow where follower='Albert_Larson@hotmail.com' and followee='Albert_Karipova@gmail.com';
+-- 
+-- 
+--  create or replace view view_results as
+-- SELECT *
+-- FROM (SELECT email,topicid FROM blurt_analysis) AS T1
+-- inner JOIN (SELECT email,topicid FROM blurt_analysis) AS T2
+-- ON T1.topicid=T2.topicid and (t1.email<>t2.email);
+-- 
+-- WHERE  T1.email not in
+-- (
+--     SELECT follower
+--     FROM follow T3
+--     WHERE T2.email = T3.follower
+-- )
+-- ORDER BY t2.email;
 
 
