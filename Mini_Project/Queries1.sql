@@ -108,26 +108,40 @@ select * from follow where follower='Albert_Larson@hotmail.com' and followee='Al
 -- ORDER BY t2.email;
 
 -- Query 8
-SELECT distinct A.NAME, B.NAME, c.NAME, A.email, B.email, C.email
-FROM USER A, USER B, USER c, FOLLOW F1, FOLLOW F2, FOLLOW F3 
-WHERE A.EMAIL = F1.FOLLOWER 
-AND F1.FOLLOWEE = B.EMAIL 
-AND B.EMAIL = F2.FOLLOWER 
-AND F2.FOLLOWEE = c.EMAIL 
-AND A.EMAIL <> F3.FOLLOWER 
-AND c.EMAIL <> F3.FOLLOWEE ;
+-- create or replace view view_first as
+-- SELECT  distinct A.NAME as 'follower', B.NAME as 'followee', A.email as 'follower_email', B.email as 'followee_email'
+-- FROM USER A, USER B,FOLLOW F1, FOLLOW F2
+-- WHERE A.EMAIL = F1.FOLLOWER 
+-- AND F1.FOLLOWEE = B.EMAIL;
+-- 
+-- select *
+-- from view_first A,user c, follow B 
+-- where A.followee=B.follower
+-- and B.followee=c.email;
 
-select * from follow where follower='Albert_Smith@msn.com' and followee='Albert_Helibron@yahoo.com';
+select distinct a.name,b.name,c.name,a.email,b.email,c.email
+from 
+user as a inner join user as b on a.email<>b.email
+inner join user c on a.email<>c.email and b.email<>c.email
+inner join follow as f1, follow as f2, follow as f3
+where a.email=f1.follower
+and f1.followee=b.email
+and f2.followee=c.email
+and b.email = f2.follower
+and a.email=f3.follower
+and c.email<>f3.followee
+and a.name='Albert Helibron';
 
 -- Query 9
 select * from blurt_analysis;
 
 create or replace view view_topic_count as
-select topicid,avg(sentiment) as avg_sentiment, count(blurtid) as blurt_count
-from blurt_analysis
-group by topicid
+select a.topicid,avg(a.sentiment) as avg_sentiment, b.location, count(b.blurtid) as blurt_count
+from blurt_analysis a inner join blurt b on a.blurtid=b.blurtid
+group by a.topicid,b.location
 order by avg_sentiment;
 
-select * from view_topic_count a
-inner join topic b on a.topicid=b.id
-where avg_sentiment<0;
+select distinct a.topicid, d.description, b.location, b.blurt_count, b.avg_sentiment from blurt_analysis a inner join view_topic_count b on b.topicid=a.topicid
+inner join topic d on d.id=a.topicid
+where b.avg_sentiment<0;
+
