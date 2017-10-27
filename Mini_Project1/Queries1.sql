@@ -1,3 +1,6 @@
+-- Name - Snehal Srinivas Gandham
+-- ID       - 79007757
+ 
 use db_mini_project_1;
 
 -- 1  
@@ -16,7 +19,7 @@ group by (a.followee)
 order by b.name;
 
 -- 3
-select a.name,count(b.blurtid) as blurt_count from user 
+select a.name,count(b.blurtid) as blurt_count from user a
 inner join blurt b
 on a.email=b.email
 where a.type='C'
@@ -83,7 +86,7 @@ and a.email <> b.email
 -- and a.topicid='6'
 order  by a.email;
 
-select distinct b.follower, b.followee, c.name,d.name from view_follow a
+select distinct  c.name,d.name from view_follow a
 right join view_results b
 on a.follower=b.follower and a.followee=b.followee
 inner join user c on c.email = b.follower
@@ -108,6 +111,7 @@ select * from follow where follower='Albert_Larson@hotmail.com' and followee='Al
 -- ORDER BY t2.email;
 
 -- Query 8
+
 -- create or replace view view_first as
 -- SELECT  distinct A.NAME as 'follower', B.NAME as 'followee', A.email as 'follower_email', B.email as 'followee_email'
 -- FROM USER A, USER B,FOLLOW F1, FOLLOW F2
