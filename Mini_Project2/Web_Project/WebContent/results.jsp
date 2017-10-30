@@ -28,6 +28,8 @@
 
 	    if (request.getParameter("artist_name") != null)
 	        artist_name = request.getParameter("artist_name");
+	    
+	    System.out.println("artist name:"+artist_name);
 
 	    if (request.getParameter("image_location") != null)
 	        image_location = request.getParameter("image_location");
@@ -54,11 +56,14 @@
 	            String query_artists_count = "select * from artist where country='"+artist_country+"';";
 	            System.out.println(query_artists_count);
 	            String query_artists_year  = "select * from artist where birth_year=" + artist_birth_year+";";
-	            ResultSet result_artists = select_artists.executeQuery(query_artists_year);
+	            
+	            String query_images_location = "select distinct a.title, a.link, b.type, b.location, c.name as 'Artist Name' from image a inner join detail b on a.image_id=b.image_id inner join artist c on a.artist_id=c.artist_id where b.location='" + image_location+ "' or c.name='"+ artist_name+"';";
+	            System.out.println(query_images_location);
+	            ResultSet result_artists = select_artists.executeQuery(query_images_location);
 	            while(result_artists.next()){
 	                /* System.out.println("Went inside : " ); */
-	                String tmp=result_artists.getString("name").toString();
-	                System.out.println(tmp);
+	                String tmp=result_artists.getString("title").toString();
+	                System.out.println(query_images_location);
 	                out.println(tmp);
 	            }
 	        }
