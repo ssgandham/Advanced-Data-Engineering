@@ -39,11 +39,13 @@
 			</tr>
 			<br>
 			<tr>
+				<td>Query 16</td>
 				<td>Artist by Country</td>
 				<td><input type="text" name="artist_country">
 			</tr>
 			<br>
 			<tr>
+				<td> Query 17</td>
 				<td>Artist by Birth Year</td>
 				<td><input type="text" name="artist_birth_year">
 			</tr>

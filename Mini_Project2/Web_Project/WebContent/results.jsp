@@ -53,13 +53,13 @@
 	            Statement select_artists = test_connection.createStatement();
 	            String query_artists_count = "select * from artist where country='"+artist_country+"';";
 	            System.out.println(query_artists_count);
-	            String query_artists_year  = "select * from artist where year=" + artist_birth_year+";";
-	            ResultSet result_artists = select_artists.executeQuery(query_artists_count);
+	            String query_artists_year  = "select * from artist where birth_year=" + artist_birth_year+";";
+	            ResultSet result_artists = select_artists.executeQuery(query_artists_year);
 	            while(result_artists.next()){
-	                System.out.println("Went inside : " );
+	                /* System.out.println("Went inside : " ); */
 	                String tmp=result_artists.getString("name").toString();
 	                System.out.println(tmp);
-	                out.print(tmp);
+	                out.println(tmp);
 	            }
 	        }
 	    } catch (Exception e) {
