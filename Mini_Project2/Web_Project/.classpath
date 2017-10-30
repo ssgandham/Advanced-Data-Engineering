@@ -10,12 +10,11 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/Users/balaji/Documents/github/DataEngineering/Mini_Project2/Drivers/apache-tomcat-7.0.82/bin/bootstrap.jar"/>
 	<classpathentry kind="lib" path="/Users/balaji/Documents/github/DataEngineering/Mini_Project2/Drivers/apache-tomcat-7.0.82/bin/commons-daemon.jar"/>
-	<classpathentry kind="lib" path="/Users/balaji/Documents/github/DataEngineering/Mini_Project2/Drivers/apache-tomcat-7.0.82/bin/tomcat-juli.jar"/>
-	<classpathentry kind="lib" path="/Users/balaji/Documents/github/DataEngineering/Mini_Project2/Drivers/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_111]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/balaji/Documents/github/DataEngineering/Mini_Project2/Drivers/mysql-connector-java-5.1.44/mysql-connector-java-5.1.44-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
