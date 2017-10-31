@@ -25,11 +25,13 @@
 			<br>
 			<tr>
 				<td>Images by given range of image creation</td>
-				<td> From</td>
-				<td><input type="text" name="image_year_from">
+				<td> From
+				<input type="text" name="image_year_from">
+				</td>
 				
-				<td> To</td>
-				<td><input type="text" name="image_year_to">
+				<td> To
+				<input type="text" name="image_year_to">
+				</td>
 			</tr>
 			<br>
 			<tr>
@@ -56,6 +58,7 @@
 			</tr>
 			<tr>
 			<td>
+			<input type="submit" value="Query 13" name="submit">
 			<input type="submit" value="Query 14" name="submit">
 			<input type="submit" value="Query 15" name="submit">
 			<input type="submit" value="Query 16" name="submit">

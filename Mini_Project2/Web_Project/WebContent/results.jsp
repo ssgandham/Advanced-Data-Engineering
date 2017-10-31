@@ -16,15 +16,18 @@
 </head>
 <body>
 	<%
-	    String image_type = "", image_year = "", artist_name = "", image_location = "", artist_country = "",
+	    String image_type = "", image_year_from = "", image_year_to="", artist_name = "", image_location = "", artist_country = "",
 	            artist_birth_year = "";
 	%>
 	<%
 	    if (request.getParameter("image_type") != null)
 	        image_type = request.getParameter("image_type");
 
-	    if (request.getParameter("image_year") != null)
-	        image_year = request.getParameter("image_year");
+	    if (request.getParameter("image_year_from") != null)
+	        image_year_from = request.getParameter("image_year_from");
+	    
+	    if (request.getParameter("image_year_to") != null)
+	        image_year_to = request.getParameter("image_year_to");
 
 	    if (request.getParameter("artist_name") != null)
 	        artist_name = request.getParameter("artist_name");
@@ -46,8 +49,8 @@
 	                "jdbc:mysql:///db_mini_project2?autoReconnect=true&useSSL=false", "root", "root");
 
 	        /* Connection test_connection=DriverManager
-	                .getConnection("jdbc:mysql://localhost/feedback?"
-	                        + "user=root&password=root"); */
+	            .getConnection("jdbc:mysql://localhost/feedback?"
+	                    + "user=root&password=root"); */
 	        if (test_connection == null) {
 	            System.out.println("Not successful");
 	            out.println("Connection not successfull");
@@ -55,54 +58,65 @@
 	            Statement select_artists = test_connection.createStatement();
 
 	            System.out.println(request.getParameter("submit"));
-	            
-	            if ("Query 14".equals(request.getParameter("submit"))) {
-	                String query_images_location =
-		                    "select distinct a.title, a.link, b.type, b.location, c.name as 'Artist Name' from image a inner join detail b on a.image_id=b.image_id inner join artist c on a.artist_id=c.artist_id where b.location='"
-		                            + image_location + "' or c.name='" + artist_name + "';";
-	                ResultSet result_artists = select_artists.executeQuery(query_images_location);
-	                while (result_artists.next()) {
-	                     System.out.println("Went inside : " ); 
-	                    String tmp = result_artists.getString("title").toString();
-	                    System.out.println(query_images_location);
+
+	            if ("Query 13".equals(request.getParameter("submit"))) {
+	                String query_artist_name =
+	                        "select * from detail a inner join image b on a.image_id=b.image_id where a.year>=" +image_year_from+" and a.year<="+image_year_to;
+	                ResultSet result_artist_name = select_artists.executeQuery(query_artist_name);
+	                while (result_artist_name.next()) {
+	                    System.out.println("Went inside : ");
+	                    String tmp = result_artist_name.getString("title").toString();
+	                    System.out.println(query_artist_name);
 	                    out.println(tmp);
 	                }
 	                select_artists.close();
 	            }
 	            
+	            if ("Query 14".equals(request.getParameter("submit"))) {
+	                String query_artist_name =
+	                        "select * from artist where name='" +artist_name+"'";
+	                ResultSet result_artist_name = select_artists.executeQuery(query_artist_name);
+	                while (result_artist_name.next()) {
+	                    System.out.println("Went inside : ");
+	                    String tmp = result_artist_name.getString("name").toString();
+	                    System.out.println(query_artist_name);
+	                    out.println(tmp);
+	                }
+	                select_artists.close();
+	            }
+
 	            if ("Query 15".equals(request.getParameter("submit"))) {
 	                String query_images_location =
-		                    "select distinct a.title, a.link, b.type, b.location, c.name as 'Artist Name' from image a inner join detail b on a.image_id=b.image_id inner join artist c on a.artist_id=c.artist_id where b.location='"
-		                            + image_location + "' or c.name='" + artist_name + "';";
+	                        "select distinct a.title, a.link, b.type, b.location, c.name as 'Artist Name' from image a inner join detail b on a.image_id=b.image_id inner join artist c on a.artist_id=c.artist_id where b.location='"
+	                                + image_location + "' or c.name='" + artist_name + "';";
 	                ResultSet result_image_location = select_artists.executeQuery(query_images_location);
 	                while (result_image_location.next()) {
-	                     System.out.println("Went inside : " ); 
+	                    System.out.println("Went inside : ");
 	                    String tmp = result_image_location.getString("title").toString();
 	                    System.out.println(query_images_location);
 	                    out.println(tmp);
 	                }
 	                select_artists.close();
 	            }
-	            
-	            
+
 	            if ("Query 16".equals(request.getParameter("submit"))) {
 	                String query_artists_country = "select * from artist where country='" + artist_country + "';";
 	                ResultSet result_artists_country = select_artists.executeQuery(query_artists_country);
 	                while (result_artists_country.next()) {
-	                     System.out.println("Went inside : " ); 
+	                    System.out.println("Went inside : ");
 	                    String tmp = result_artists_country.getString("name").toString();
 	                    System.out.println(query_artists_country);
 	                    out.println(tmp);
 	                }
 	                select_artists.close();
 	            }
-	            
-	            if("Query 17".equals(request.getParameter("submit"))){
+
+	            if ("Query 17".equals(request.getParameter("submit"))) {
 	                String query_artists_year = "select * from artist where birth_year=" + artist_birth_year + ";";
-	                
+
 	                ResultSet result_artists_year = select_artists.executeQuery(query_artists_year);
 	                while (result_artists_year.next()) {
-	                     System.out.println("Went inside : " ); 
+	                    System.out.println("Went inside : ");
 	                    String tmp = result_artists_year.getString("name").toString();
 	                    System.out.println(query_artists_year);
 	                    out.println(tmp);
