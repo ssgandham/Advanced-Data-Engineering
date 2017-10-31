@@ -135,24 +135,49 @@
 	                        "select * from detail a inner join image b on a.image_id=b.image_id where a.year>="
 	                                + image_year_from + " and a.year<=" + image_year_to;
 	                ResultSet result_artist_name = select_artists.executeQuery(query_artist_name);
+	                out.print(
+	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+	                out.print(
+	                        "<tr><th>Image ID</th><th>Year</th><th>Type</th><th>Location</th><th>Description</th><th>Link</th></tr>");
 	                while (result_artist_name.next()) {
 	                    System.out.println("Went inside : ");
 	                    String tmp = result_artist_name.getString("title").toString();
 	                    System.out.println(query_artist_name);
-	                    out.println(tmp);
+	                    //out.println(tmp);
+	                    out.println("<tr><td>" + result_artist_name.getString("image_id") + "</td><td>"
+	                            + result_artist_name.getString("year") + "</td><td>"
+	                            + result_artist_name.getString("type") + "</td><td>"
+	                            + result_artist_name.getString("location") + "</td><td>"
+	                            + result_artist_name.getString("description") + "</td><td>"
+	                            + "<img src=\"" + result_artist_name.getString("link")
+	                            + "\" height=\"100\" width=\"200 \"></td></tr>");
 	                }
+	                out.println("</table></body></html>");
 	                select_artists.close();
 	            }
 
 	            if ("Query 14".equals(request.getParameter("submit"))) {
-	                String query_artist_name = "select * from artist where name='" + artist_name + "'";
-	                ResultSet result_artist_name = select_artists.executeQuery(query_artist_name);
-	                while (result_artist_name.next()) {
+	                String query_images_location =
+	                        "select distinct a.title, a.link, b.type, b.location, c.name as 'Artist Name' from image a inner join detail b on a.image_id=b.image_id inner join artist c on a.artist_id=c.artist_id where b.location='"
+	                                + image_location + "' or c.name='" + artist_name + "';";
+	                ResultSet result_image_location = select_artists.executeQuery(query_images_location);
+	                out.print(
+	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+	                out.print(
+	                        "<tr><th>Title</th><th>Type</th><th>Location</th><th>Artist Name</th><th>Web</th></tr>");
+	                while (result_image_location.next()) {
 	                    System.out.println("Went inside : ");
-	                    String tmp = result_artist_name.getString("name").toString();
-	                    System.out.println(query_artist_name);
-	                    out.println(tmp);
+	                    String tmp = result_image_location.getString("title").toString();
+	                    System.out.println(query_images_location);
+	                    //out.println(tmp);
+	                    out.println("<tr><td>" + result_image_location.getString("title") + "</td><td>"
+	                            + result_image_location.getString("type") + "</td><td>"
+	                            + result_image_location.getString("location") + "</td><td>"
+	                            + result_image_location.getString("Artist Name") + "</td><td>" + "<img src=\""
+	                            + result_image_location.getString("link")
+	                            + "\" height=\"100\" width=\"200 \"></td></tr>");
 	                }
+	                out.println("</table></body></html>");
 	                select_artists.close();
 	            }
 
@@ -173,8 +198,9 @@
 	                    out.println("<tr><td>" + result_image_location.getString("title") + "</td><td>"
 	                            + result_image_location.getString("type") + "</td><td>"
 	                            + result_image_location.getString("location") + "</td><td>"
-	                            + result_image_location.getString("Artist Name") + "</td><td>"
-	                            + "<img src=\"" + result_image_location.getString("link") + "\" height=\"100\" width=\"200 \"></td></tr>");
+	                            + result_image_location.getString("Artist Name") + "</td><td>" + "<img src=\""
+	                            + result_image_location.getString("link")
+	                            + "\" height=\"100\" width=\"200 \"></td></tr>");
 	                }
 	                out.println("</table></body></html>");
 	                select_artists.close();
@@ -183,16 +209,15 @@
 	            if ("Query 16".equals(request.getParameter("submit"))) {
 	                String query_artists_country = "select * from artist where country='" + artist_country + "';";
 	                ResultSet result_artists_country = select_artists.executeQuery(query_artists_country);
-	                
+
 	                out.print(
 	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
-	                out.print(
-	                        "<tr><th>Name</th><th>Birth Year</th><th>Country</th><th>Description</th></tr>");
+	                out.print("<tr><th>Name</th><th>Birth Year</th><th>Country</th><th>Description</th></tr>");
 	                while (result_artists_country.next()) {
 	                    System.out.println("Went inside : ");
 	                    String tmp = result_artists_country.getString("name").toString();
 	                    System.out.println(query_artists_country);
-	                   // out.println(tmp);
+	                    // out.println(tmp);
 	                    out.println("<tr><td>" + result_artists_country.getString("name") + "</td><td>"
 	                            + result_artists_country.getString("birth_year") + "</td><td>"
 	                            + result_artists_country.getString("country") + "</td><td>"
@@ -208,8 +233,7 @@
 	                ResultSet result_artists_year = select_artists.executeQuery(query_artists_year);
 	                out.print(
 	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
-	                out.print(
-	                        "<tr><th>Name</th><th>Birth Year</th><th>Country</th><th>Description</th></tr>");
+	                out.print("<tr><th>Name</th><th>Birth Year</th><th>Country</th><th>Description</th></tr>");
 
 	                while (result_artists_year.next()) {
 	                    //System.out.println("Went inside : ");
