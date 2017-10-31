@@ -59,6 +59,32 @@
 
 	            System.out.println(request.getParameter("submit"));
 				
+	            if ("Query 1".equals(request.getParameter("submit"))) {
+	                String query_gallery =
+	                        "select * from gallery;";
+	                ResultSet result_artist_name = select_artists.executeQuery(query_gallery);
+	                while (result_artist_name.next()) {
+	                    System.out.println("Went inside : ");
+	                    String tmp = result_artist_name.getString("name").toString();
+	                    System.out.println(query_gallery);
+	                    out.println(tmp);
+	                }
+	                select_artists.close();
+	            }
+	            
+	            if ("Query 2".equals(request.getParameter("submit"))) {
+	                String query_gallery =
+	                        "select * from image;";
+	                ResultSet result_artist_name = select_artists.executeQuery(query_gallery);
+	                while (result_artist_name.next()) {
+	                    System.out.println("Went inside : ");
+	                    String tmp = result_artist_name.getString("title").toString();
+	                    System.out.println(query_gallery);
+	                    out.println(tmp);
+	                }
+	                select_artists.close();
+	            }
+	            
 	            if ("Query 12".equals(request.getParameter("submit"))) {
 	                String query_image_type =
 	                        "select * from detail a inner join image b on a.image_id=b.image_id where a.type='" + image_type+"';";
