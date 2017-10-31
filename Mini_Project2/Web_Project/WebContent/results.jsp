@@ -102,12 +102,20 @@
 	                        "select * from detail a inner join image b on a.image_id=b.image_id where a.type='"
 	                                + image_type + "';";
 	                ResultSet result_artist_name = select_artists.executeQuery(query_image_type);
+	                out.print("<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+                    out.print("<tr><th>Image ID</th><th>Title</th><th>Year</th><th>Type</th><th>Width</th><th>Height</th><th>Location</th><th> Link</th></tr>");
 	                while (result_artist_name.next()) {
-	                    System.out.println("Went inside : ");
+	                   /* System.out.println("Went inside : ");
 	                    String tmp = result_artist_name.getString("title").toString();
 	                    System.out.println(query_image_type);
-	                    out.println(tmp);
+	                    out.println(tmp);*/
+	                    out.print("<tr><td>"+result_artist_name.getString("image_id")+"</td><td>"+result_artist_name.getString("title")+
+	                            "</td><td>"+result_artist_name.getString("year") + "</td><td>"+result_artist_name.getString("type")+
+	                            "</td><td>"+result_artist_name.getString("width") + "</td><td>" + result_artist_name.getString("height") + 
+	                            "</td><td>" + result_artist_name.getString("location") + "</td><td><img src="+result_artist_name.getString("link")+" height=\"100\" width=\"200\"" + "></td></tr>");
+	                    
 	                }
+	                out.println("</table></body></html>");
 	                select_artists.close();
 	            }
 
