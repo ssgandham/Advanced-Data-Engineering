@@ -62,16 +62,18 @@
 	            if ("Query 1".equals(request.getParameter("submit"))) {
 	                String query_gallery = "select * from gallery;";
 	                ResultSet result_artist_name = select_artists.executeQuery(query_gallery);
-	                out.print("<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
-                    out.print("<tr><th>ID</th><th>Name</th><th>Description</th></tr>");
+	                out.print(
+	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+	                out.print("<tr><th>ID</th><th>Name</th><th>Description</th></tr>");
 	                while (result_artist_name.next()) {
 	                    //System.out.println("Went inside : ");
 	                    //String tmp = result_artist_name.getString("gallery_id").toString();
 	                    System.out.println(query_gallery);
-	                    
-	                    out.println("<tr><td>"+result_artist_name.getString("gallery_id")+"</td><td>"+result_artist_name.getString("name")+"</td>");
+
+	                    out.println("<tr><td>" + result_artist_name.getString("gallery_id") + "</td><td>"
+	                            + result_artist_name.getString("name") + "</td>");
 	                    //out.print(result_artist_name.getString("name"));
-	                    out.println("<td>"+result_artist_name.getString("description")+"</td></tr>");
+	                    out.println("<td>" + result_artist_name.getString("description") + "</td></tr>");
 	                }
 	                out.println("</table></body></html>");
 	                select_artists.close();
@@ -80,18 +82,20 @@
 	            if ("Query 2".equals(request.getParameter("submit"))) {
 	                String query_gallery = "select * from image;";
 	                ResultSet result_artist_name = select_artists.executeQuery(query_gallery);
-	                out.print("<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
-                    out.print("<tr><th>Gallery ID</th><th>Title</th><th>Image</th></tr>");
+	                out.print(
+	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+	                out.print("<tr><th>Gallery ID</th><th>Title</th><th>Image</th></tr>");
 	                while (result_artist_name.next()) {
 	                    System.out.println("Went inside : ");
 	                    String tmp = result_artist_name.getString("image_id").toString();
 	                    System.out.println(query_gallery);
 	                    //out.println(tmp);
-	                    
-	                    out.println("<tr><td>"+tmp+"</td><td>"+ result_artist_name.getString("title")+ "</td><td>");
+
+	                    out.println("<tr><td>" + tmp + "</td><td>" + result_artist_name.getString("title")
+	                            + "</td><td>");
 	                    String image_url = result_artist_name.getString("link");
-	                    out.println("<img src="+image_url+" height=\"100\" width=\"200\"" + "></td></tr>" );
-	                    
+	                    out.println("<img src=" + image_url + " height=\"100\" width=\"200\"" + "></td></tr>");
+
 	                }
 	                out.println("</table></body></html>");
 	                select_artists.close();
@@ -102,18 +106,25 @@
 	                        "select * from detail a inner join image b on a.image_id=b.image_id where a.type='"
 	                                + image_type + "';";
 	                ResultSet result_artist_name = select_artists.executeQuery(query_image_type);
-	                out.print("<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
-                    out.print("<tr><th>Image ID</th><th>Title</th><th>Year</th><th>Type</th><th>Width</th><th>Height</th><th>Location</th><th> Link</th></tr>");
+	                out.print(
+	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+	                out.print(
+	                        "<tr><th>Image ID</th><th>Title</th><th>Year</th><th>Type</th><th>Width</th><th>Height</th><th>Location</th><th> Link</th></tr>");
 	                while (result_artist_name.next()) {
-	                   /* System.out.println("Went inside : ");
-	                    String tmp = result_artist_name.getString("title").toString();
-	                    System.out.println(query_image_type);
-	                    out.println(tmp);*/
-	                    out.print("<tr><td>"+result_artist_name.getString("image_id")+"</td><td>"+result_artist_name.getString("title")+
-	                            "</td><td>"+result_artist_name.getString("year") + "</td><td>"+result_artist_name.getString("type")+
-	                            "</td><td>"+result_artist_name.getString("width") + "</td><td>" + result_artist_name.getString("height") + 
-	                            "</td><td>" + result_artist_name.getString("location") + "</td><td><img src="+result_artist_name.getString("link")+" height=\"100\" width=\"200\"" + "></td></tr>");
-	                    
+	                    /* System.out.println("Went inside : ");
+	                     String tmp = result_artist_name.getString("title").toString();
+	                     System.out.println(query_image_type);
+	                     out.println(tmp);*/
+	                    out.print("<tr><td>" + result_artist_name.getString("image_id") + "</td><td>"
+	                            + result_artist_name.getString("title") + "</td><td>"
+	                            + result_artist_name.getString("year") + "</td><td>"
+	                            + result_artist_name.getString("type") + "</td><td>"
+	                            + result_artist_name.getString("width") + "</td><td>"
+	                            + result_artist_name.getString("height") + "</td><td>"
+	                            + result_artist_name.getString("location") + "</td><td><img src="
+	                            + result_artist_name.getString("link") + " height=\"100\" width=\"200\""
+	                            + "></td></tr>");
+
 	                }
 	                out.println("</table></body></html>");
 	                select_artists.close();
@@ -175,12 +186,22 @@
 	                String query_artists_year = "select * from artist where birth_year=" + artist_birth_year + ";";
 
 	                ResultSet result_artists_year = select_artists.executeQuery(query_artists_year);
+	                out.print(
+	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+	                out.print(
+	                        "<tr><th>Name</th><th>Birth Year</th><th>Country</th><th>Description</th></tr>");
+
 	                while (result_artists_year.next()) {
-	                    System.out.println("Went inside : ");
+	                    //System.out.println("Went inside : ");
 	                    String tmp = result_artists_year.getString("name").toString();
 	                    System.out.println(query_artists_year);
-	                    out.println(tmp);
+	                    //out.println(tmp);
+	                    out.println("<tr><td>" + result_artists_year.getString("name") + "</td><td>"
+	                            + result_artists_year.getString("birth_year") + "</td><td>"
+	                            + result_artists_year.getString("country") + "</td><td>"
+	                            + result_artists_year.getString("description") + "</td></tr>");
 	                }
+	                out.println("</table></body></html>");
 	                select_artists.close();
 	            }
 	            /* 	            ResultSet result_artists = select_artists.executeQuery(query_images_location);
