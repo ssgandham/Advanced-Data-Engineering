@@ -25,7 +25,11 @@
 			<br>
 			<tr>
 				<td>Images by given range of image creation</td>
-				<td><input type="text" name="image_year">
+				<td> From</td>
+				<td><input type="text" name="image_year_from">
+				
+				<td> To</td>
+				<td><input type="text" name="image_year_to">
 			</tr>
 			<br>
 			<tr>
@@ -42,6 +46,7 @@
 				<td>Query 16</td>
 				<td>Artist by Country</td>
 				<td><input type="text" name="artist_country">
+				<td><input type="submit" value="Artist By Country" name="submit">
 			</tr>
 			<br>
 			<tr>
@@ -51,7 +56,7 @@
 			</tr>
 			<br>
 			<tr>
-				<td><input type="submit" value="submit">
+				<td><input type="submit" value="submit" name="submit"></td>
 			</tr>
 			<br>
 		</table>
