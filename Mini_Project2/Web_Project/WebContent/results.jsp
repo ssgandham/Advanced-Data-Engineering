@@ -173,12 +173,22 @@
 	            if ("Query 16".equals(request.getParameter("submit"))) {
 	                String query_artists_country = "select * from artist where country='" + artist_country + "';";
 	                ResultSet result_artists_country = select_artists.executeQuery(query_artists_country);
+	                
+	                out.print(
+	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+	                out.print(
+	                        "<tr><th>Name</th><th>Birth Year</th><th>Country</th><th>Description</th></tr>");
 	                while (result_artists_country.next()) {
 	                    System.out.println("Went inside : ");
 	                    String tmp = result_artists_country.getString("name").toString();
 	                    System.out.println(query_artists_country);
-	                    out.println(tmp);
+	                   // out.println(tmp);
+	                    out.println("<tr><td>" + result_artists_country.getString("name") + "</td><td>"
+	                            + result_artists_country.getString("birth_year") + "</td><td>"
+	                            + result_artists_country.getString("country") + "</td><td>"
+	                            + result_artists_country.getString("description") + "</td></tr>");
 	                }
+	                out.println("</table></body></html>");
 	                select_artists.close();
 	            }
 
