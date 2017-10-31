@@ -58,7 +58,20 @@
 	            Statement select_artists = test_connection.createStatement();
 
 	            System.out.println(request.getParameter("submit"));
-
+				
+	            if ("Query 12".equals(request.getParameter("submit"))) {
+	                String query_image_type =
+	                        "select * from detail a inner join image b on a.image_id=b.image_id where a.type='" + image_type+"';";
+	                ResultSet result_artist_name = select_artists.executeQuery(query_image_type);
+	                while (result_artist_name.next()) {
+	                    System.out.println("Went inside : ");
+	                    String tmp = result_artist_name.getString("title").toString();
+	                    System.out.println(query_image_type);
+	                    out.println(tmp);
+	                }
+	                select_artists.close();
+	            }
+	            
 	            if ("Query 13".equals(request.getParameter("submit"))) {
 	                String query_artist_name =
 	                        "select * from detail a inner join image b on a.image_id=b.image_id where a.year>=" +image_year_from+" and a.year<="+image_year_to;

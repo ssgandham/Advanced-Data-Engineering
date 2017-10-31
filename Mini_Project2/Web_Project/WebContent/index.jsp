@@ -58,6 +58,7 @@
 			</tr>
 			<tr>
 			<td>
+			<input type="submit" value="Query 12" name="submit">
 			<input type="submit" value="Query 13" name="submit">
 			<input type="submit" value="Query 14" name="submit">
 			<input type="submit" value="Query 15" name="submit">
