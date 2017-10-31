@@ -40,19 +40,27 @@
 			<tr>
 				<td>Images By Location</td>
 				<td><input type="text" name="image_location">
+				
 			</tr>
 			<br>
 			<tr>
-				<td>Query 16</td>
 				<td>Artist by Country</td>
 				<td><input type="text" name="artist_country">
-				<td><input type="submit" value="Artist By Country" name="submit">
+				
 			</tr>
 			<br>
 			<tr>
-				<td> Query 17</td>
 				<td>Artist by Birth Year</td>
-				<td><input type="text" name="artist_birth_year">
+				<td><input type="text" name="artist_birth_year"></td>
+				
+			</tr>
+			<tr>
+			<td>
+			<input type="submit" value="Query 14" name="submit">
+			<input type="submit" value="Query 15" name="submit">
+			<input type="submit" value="Query 16" name="submit">
+			<input type="submit" value="Query 17" name="submit">
+			</td>
 			</tr>
 			<br>
 			<tr>
