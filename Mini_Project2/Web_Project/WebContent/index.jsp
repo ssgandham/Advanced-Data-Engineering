@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+
 	<form method="post" action="results.jsp">
 		<table>
 			<tr>
@@ -25,12 +25,10 @@
 			<br>
 			<tr>
 				<td>Images by given range of image creation</td>
-				<td> From
-				<input type="text" name="image_year_from">
+				<td>From <input type="text" name="image_year_from">
 				</td>
-				
-				<td> To
-				<input type="text" name="image_year_to">
+
+				<td>To <input type="text" name="image_year_to">
 				</td>
 			</tr>
 			<br>
@@ -42,31 +40,30 @@
 			<tr>
 				<td>Images By Location</td>
 				<td><input type="text" name="image_location">
-				
 			</tr>
 			<br>
 			<tr>
 				<td>Artist by Country</td>
 				<td><input type="text" name="artist_country">
-				
 			</tr>
 			<br>
 			<tr>
 				<td>Artist by Birth Year</td>
 				<td><input type="text" name="artist_birth_year"></td>
-				
+
 			</tr>
 			<tr>
-			<td>
-			<input type="submit" value="Query 1" name="submit">
-			<input type="submit" value="Query 2" name="submit">
-			<input type="submit" value="Query 12" name="submit">
-			<input type="submit" value="Query 13" name="submit">
-			<input type="submit" value="Query 14" name="submit">
-			<input type="submit" value="Query 15" name="submit">
-			<input type="submit" value="Query 16" name="submit">
-			<input type="submit" value="Query 17" name="submit">
-			</td>
+			
+			</tr>
+			<tr>
+				<td><input type="submit" value="Query 1" name="submit">
+					<input type="submit" value="Query 2" name="submit"> <input
+					type="submit" value="Query 12" name="submit"> <input
+					type="submit" value="Query 13" name="submit"> <input
+					type="submit" value="Query 14" name="submit"> <input
+					type="submit" value="Query 15" name="submit"> <input
+					type="submit" value="Query 16" name="submit"> <input
+					type="submit" value="Query 17" name="submit"></td>
 			</tr>
 			<br>
 			<tr>

@@ -61,9 +61,12 @@
 
 	            if ("Query 1".equals(request.getParameter("submit"))) {
 	                String query_gallery = "select * from gallery;";
+	                String query_count = "select count(*) from gallery;";
 	                ResultSet result_artist_name = select_artists.executeQuery(query_gallery);
+	                ResultSet result_count = select_artists.executeQuery(query_gallery);
 	                out.print(
 	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+
 	                out.print("<tr><th>ID</th><th>Name</th><th>Description</th></tr>");
 	                while (result_artist_name.next()) {
 	                    //System.out.println("Went inside : ");
@@ -81,9 +84,15 @@
 
 	            if ("Query 2".equals(request.getParameter("submit"))) {
 	                String query_gallery = "select * from image;";
+	                String query_gallery_count = "select count(*) as count from image;";
+	                Statement select_gallery_count = test_connection.createStatement();
 	                ResultSet result_artist_name = select_artists.executeQuery(query_gallery);
+	                ResultSet result_gallery_count = select_gallery_count.executeQuery(query_gallery_count);
 	                out.print(
 	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+	                while (result_gallery_count.next()) {
+	                out.print("<tr> No of Images : </tr>"+ result_gallery_count.getString("count"));
+	                }
 	                out.print("<tr><th>Gallery ID</th><th>Title</th><th>Image</th></tr>");
 	                while (result_artist_name.next()) {
 	                    System.out.println("Went inside : ");
@@ -148,8 +157,8 @@
 	                            + result_artist_name.getString("year") + "</td><td>"
 	                            + result_artist_name.getString("type") + "</td><td>"
 	                            + result_artist_name.getString("location") + "</td><td>"
-	                            + result_artist_name.getString("description") + "</td><td>"
-	                            + "<img src=\"" + result_artist_name.getString("link")
+	                            + result_artist_name.getString("description") + "</td><td>" + "<img src=\""
+	                            + result_artist_name.getString("link")
 	                            + "\" height=\"100\" width=\"200 \"></td></tr>");
 	                }
 	                out.println("</table></body></html>");
