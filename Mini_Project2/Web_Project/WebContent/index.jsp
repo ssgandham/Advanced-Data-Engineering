@@ -68,6 +68,7 @@
 					<input type="submit" value="Query 2" name="submit"> <input
 					type="submit" value="Query 3" name="submit"> <input
 					type="submit" value="Query 5" name="submit"> <input
+					type="submit" value="Query 6" name="submit"> <input
 					type="submit" value="Query 12" name="submit"> <input
 					type="submit" value="Query 13" name="submit"> <input
 					type="submit" value="Query 14" name="submit"> <input
