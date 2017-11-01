@@ -149,6 +149,11 @@
 	                out.println("</table></body></html>");
 	                select_artists.close();
 	            }
+	            if ("Query 5".equals(request.getParameter("submit"))) {
+	                response.sendRedirect("Query5.jsp");
+	                System.out.println("Query 5");
+	            }
+	            
 	            if ("Query 12".equals(request.getParameter("submit"))) {
 	                String query_image_type =
 	                        "select * from detail a inner join image b on a.image_id=b.image_id where a.type='"
