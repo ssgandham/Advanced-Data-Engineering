@@ -157,6 +157,10 @@
 	                response.sendRedirect("Query 6.jsp");
 	                System.out.println("Query 6");
 	            }
+	            if ("Query 11".equals(request.getParameter("submit"))) {
+	                response.sendRedirect("Query 11.jsp");
+	                System.out.println("Query 11");
+	            }
 	            
 	            if ("Query 12".equals(request.getParameter("submit"))) {
 	                String query_image_type =
