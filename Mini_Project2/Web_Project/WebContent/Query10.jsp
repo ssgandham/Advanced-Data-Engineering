@@ -78,8 +78,8 @@
 	                    query += ",country=? ";
 	                if (!description.equals(""))
 	                    query += ",description=? ";
-					
-	                query+=" where name='" + name + "'";
+
+	                query += " where name='" + name + "'";
 	                System.out.println(query);
 	                PreparedStatement ps = test_connection.prepareStatement(query);
 

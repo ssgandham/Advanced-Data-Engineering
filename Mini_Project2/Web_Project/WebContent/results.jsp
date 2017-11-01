@@ -156,6 +156,10 @@
 	                response.sendRedirect("Query 6.jsp");
 	                System.out.println("Query 6");
 	            }
+	            if ("Query8".equals(request.getParameter("submit"))) {
+	                response.sendRedirect("Query8.jsp");
+	                System.out.println("Query8");
+	            }
 	            if ("Query9".equals(request.getParameter("submit"))) {
 	                response.sendRedirect("Query9.jsp");
 	                System.out.println("Query9");
