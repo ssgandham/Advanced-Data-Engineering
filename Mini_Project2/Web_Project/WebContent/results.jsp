@@ -117,21 +117,20 @@
 	                select_artists.close();
 	            }
 
-	            
 	            if ("Query 3".equals(request.getParameter("submit"))) {
 	                String query_gallery =
 	                        "select * from gallery a inner join image b on a.gallery_id=b.gallery_id where a.name='"
 	                                + gallery_name + "';";
 	                /* String query_gallery_count =
-	                        "select count(*)  as count from gallery a inner join image b on a.gallery_id=b.gallery_id where a.name='"
-	                                + gallery_name + "';"; */
+	                    "select count(*)  as count from gallery a inner join image b on a.gallery_id=b.gallery_id where a.name='"
+	                            + gallery_name + "';"; */
 	                Statement select_gallery_count = test_connection.createStatement();
 	                ResultSet result_artist_name = select_artists.executeQuery(query_gallery);
 	                //ResultSet result_gallery_count = select_gallery_count.executeQuery(query_gallery_count);
 	                out.print(
 	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
 	                /* while (result_gallery_count.next()) {
-	                    out.print("<tr> No of Images : </tr>" + result_gallery_count.getString("count"));
+	                out.print("<tr> No of Images : </tr>" + result_gallery_count.getString("count"));
 	                } */
 	                out.print("<tr><th>Gallery ID</th><th>Title</th><th>Image</th></tr>");
 	                while (result_artist_name.next()) {
@@ -140,8 +139,8 @@
 	                    System.out.println(query_gallery);
 	                    //out.println(tmp);
 
-	                    out.println("<tr><td><a href=\"query3.jsp?image_id=" + tmp + "\">"+tmp+"</a>"+"</td><td>" + result_artist_name.getString("title")
-	                            + "</td><td>");
+	                    out.println("<tr><td><a href=\"query3.jsp?image_id=" + tmp + "\">" + tmp + "</a>"
+	                            + "</td><td>" + result_artist_name.getString("title") + "</td><td>");
 	                    String image_url = result_artist_name.getString("link");
 	                    out.println("<img src=" + image_url + " height=\"100\" width=\"200\"" + "></td></tr>");
 
@@ -157,6 +156,11 @@
 	                response.sendRedirect("Query 6.jsp");
 	                System.out.println("Query 6");
 	            }
+	            if ("Query9".equals(request.getParameter("submit"))) {
+	                response.sendRedirect("Query9.jsp");
+	                System.out.println("Query9");
+	            }
+
 	            if ("Query10".equals(request.getParameter("submit"))) {
 	                response.sendRedirect("Query10.jsp");
 	                System.out.println("Query10");
@@ -165,7 +169,7 @@
 	                response.sendRedirect("Query 11.jsp");
 	                System.out.println("Query 11");
 	            }
-	            
+
 	            if ("Query 12".equals(request.getParameter("submit"))) {
 	                String query_image_type =
 	                        "select * from detail a inner join image b on a.image_id=b.image_id where a.type='"

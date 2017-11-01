@@ -73,11 +73,11 @@
 	                if (!name_modified.equals(""))
 	                    query += "name=? ";
 	                if (!year_of_birth.equals(""))
-	                    query += "birth_year=? ";
+	                    query += ",birth_year=? ";
 	                if (!country.equals(""))
-	                    query += "country=? ";
+	                    query += ",country=? ";
 	                if (!description.equals(""))
-	                    query += "description=? ";
+	                    query += ",description=? ";
 					
 	                query+=" where name='" + name + "'";
 	                System.out.println(query);
