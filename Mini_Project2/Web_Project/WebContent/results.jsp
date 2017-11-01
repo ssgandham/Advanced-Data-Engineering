@@ -17,7 +17,7 @@
 <body>
 	<%
 	    String image_type = "", image_year_from = "", image_year_to = "", artist_name = "", image_location = "",
-	            artist_country = "", artist_birth_year = "";
+	            artist_country = "", artist_birth_year = "", gallery_name = "";
 	%>
 	<%
 	    if (request.getParameter("image_type") != null)
@@ -42,6 +42,9 @@
 
 	    if (request.getParameter("artist_birth_year") != null)
 	        artist_birth_year = request.getParameter("artist_birth_year");
+
+	    if (request.getParameter("gallery_name") != null)
+	        gallery_name = request.getParameter("gallery_name");
 
 	    try {
 	        Class.forName("com.mysql.jdbc.Driver");
@@ -83,15 +86,19 @@
 	            }
 
 	            if ("Query 2".equals(request.getParameter("submit"))) {
-	                String query_gallery = "select * from image;";
-	                String query_gallery_count = "select count(*) as count from image;";
+	                String query_gallery =
+	                        "select * from gallery a inner join image b on a.gallery_id=b.gallery_id where a.name='"
+	                                + gallery_name + "';";
+	                String query_gallery_count =
+	                        "select count(*)  as count from gallery a inner join image b on a.gallery_id=b.gallery_id where a.name='"
+	                                + gallery_name + "';";
 	                Statement select_gallery_count = test_connection.createStatement();
 	                ResultSet result_artist_name = select_artists.executeQuery(query_gallery);
 	                ResultSet result_gallery_count = select_gallery_count.executeQuery(query_gallery_count);
 	                out.print(
 	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
 	                while (result_gallery_count.next()) {
-	                out.print("<tr> No of Images : </tr>"+ result_gallery_count.getString("count"));
+	                    out.print("<tr> No of Images : </tr>" + result_gallery_count.getString("count"));
 	                }
 	                out.print("<tr><th>Gallery ID</th><th>Title</th><th>Image</th></tr>");
 	                while (result_artist_name.next()) {
@@ -110,6 +117,38 @@
 	                select_artists.close();
 	            }
 
+	            
+	            if ("Query 3".equals(request.getParameter("submit"))) {
+	                String query_gallery =
+	                        "select * from gallery a inner join image b on a.gallery_id=b.gallery_id where a.name='"
+	                                + gallery_name + "';";
+	                /* String query_gallery_count =
+	                        "select count(*)  as count from gallery a inner join image b on a.gallery_id=b.gallery_id where a.name='"
+	                                + gallery_name + "';"; */
+	                Statement select_gallery_count = test_connection.createStatement();
+	                ResultSet result_artist_name = select_artists.executeQuery(query_gallery);
+	                //ResultSet result_gallery_count = select_gallery_count.executeQuery(query_gallery_count);
+	                out.print(
+	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
+	                /* while (result_gallery_count.next()) {
+	                    out.print("<tr> No of Images : </tr>" + result_gallery_count.getString("count"));
+	                } */
+	                out.print("<tr><th>Gallery ID</th><th>Title</th><th>Image</th></tr>");
+	                while (result_artist_name.next()) {
+	                    System.out.println("Went inside : ");
+	                    String tmp = result_artist_name.getString("image_id").toString();
+	                    System.out.println(query_gallery);
+	                    //out.println(tmp);
+
+	                    out.println("<tr><td><a href=\"query3.jsp?image_id=" + tmp + "\">"+tmp+"</a>"+"</td><td>" + result_artist_name.getString("title")
+	                            + "</td><td>");
+	                    String image_url = result_artist_name.getString("link");
+	                    out.println("<img src=" + image_url + " height=\"100\" width=\"200\"" + "></td></tr>");
+
+	                }
+	                out.println("</table></body></html>");
+	                select_artists.close();
+	            }
 	            if ("Query 12".equals(request.getParameter("submit"))) {
 	                String query_image_type =
 	                        "select * from detail a inner join image b on a.image_id=b.image_id where a.type='"

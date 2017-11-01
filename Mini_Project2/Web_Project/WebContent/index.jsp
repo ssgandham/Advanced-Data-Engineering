@@ -52,12 +52,22 @@
 				<td><input type="text" name="artist_birth_year"></td>
 
 			</tr>
+
 			<tr>
-			
+				<td>Gallery Name</td>
+				<td><input type="text" name="gallery_name"></td>
+
+			</tr>
+			<tr>
+			<tr>
+
+			</tr>
 			</tr>
 			<tr>
 				<td><input type="submit" value="Query 1" name="submit">
 					<input type="submit" value="Query 2" name="submit"> <input
+					type="submit" value="Query 3" name="submit"> <input
+					type="submit" value="Query 5" name="submit"> <input
 					type="submit" value="Query 12" name="submit"> <input
 					type="submit" value="Query 13" name="submit"> <input
 					type="submit" value="Query 14" name="submit"> <input
