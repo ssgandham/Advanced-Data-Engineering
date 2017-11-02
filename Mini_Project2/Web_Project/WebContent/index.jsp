@@ -69,7 +69,7 @@
 					type="submit" value="Query 3" name="submit"> <input
 					type="submit" value="Query 5" name="submit"> <input
 					type="submit" value="Query 6" name="submit"> <input
-					
+					type="submit" value="Query7" name="submit"> <input
 					type="submit" value="Query8" name="submit"> <input
 					type="submit" value="Query9" name="submit"> <input
 					type="submit" value="Query10" name="submit"> <input

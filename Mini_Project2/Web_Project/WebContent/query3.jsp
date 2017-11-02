@@ -46,22 +46,25 @@
 	            out.print(
 	                    "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
 
-	            out.print("<tr><th>ID</th><th>Title</th><th> Artist Name</th><th>Link</th><th>Type</th><th>Width</th><th>Height</th><th>Location</th><th>Description</th></tr>");
+	            out.print(
+	                    "<tr><th>ID</th><th>Title</th><th> Artist Name</th><th>Link</th><th>Type</th><th>Width</th><th>Height</th><th>Location</th><th>Description</th></tr>");
 	            while (result_artist_name.next()) {
 	                //System.out.println("Went inside : ");
 	                //String tmp = result_artist_name.getString("gallery_id").toString();
 	                System.out.println(query_gallery);
 
-	                out.println("<tr><td>" + result_artist_name.getString("image_id") + 
-	                        "</td><td>" + result_artist_name.getString("title") + "</td><td>" +result_artist_name.getString("name")+
-	                		"<td><img src=\"" + result_artist_name.getString("link") +" \" height=\"100\" width=\"200\" ></td>" + 
-	                		"<td>" + result_artist_name.getString("type") + "</td>" + 
-	                		"<td>" + result_artist_name.getString("width") + "</td>" + 
-	                		"<td>" + result_artist_name.getString("height") + "</td>" + 
-	                		"<td>" + result_artist_name.getString("location") + "</td>" + 
-	                		"<td>" + result_artist_name.getString("description") + "</td>"
-	                		
-	                        );
+	                out.println("<tr><td>" + result_artist_name.getString("image_id") + "</td><td>"
+	                        + result_artist_name.getString("title") + "</td><td>"
+	                        + "<a href=\"artist.jsp?artist_name=" + result_artist_name.getString("name") + "\">"
+	                        + result_artist_name.getString("name") + "</a></td>" + "<td><img src=\""
+	                        + result_artist_name.getString("link") + " \" height=\"100\" width=\"200\" ></td>"
+	                        + "<td>" + result_artist_name.getString("type") + "</td>" + "<td>"
+	                        + result_artist_name.getString("width") + "</td>" + "<td>"
+	                        + result_artist_name.getString("height") + "</td>" + "<td>"
+	                        + result_artist_name.getString("location") + "</td>" + "<td>"
+	                        + result_artist_name.getString("description") + "</td>"
+
+	                );
 	                //out.print(result_artist_name.getString("name"));
 	                //out.println("<td>" + result_artist_name.getString("description") + "</td></tr>");
 	            }
