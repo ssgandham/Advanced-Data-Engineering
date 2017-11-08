@@ -55,8 +55,10 @@
 	                if (result_gallery.next())
 	                    image_url = result_gallery.getString("link");
 	                System.out.println("Went inside till: ");
+	                System.out.println("<a href=gallery_images.jsp?gallery_id=" + result_gallery_all.getString("gallery_id") + "><img src=" + image_url
+	                        + " height=\"300\" width=\"300\"" + "></a></td></tr>");
 	                out.println("<a href=gallery_images.jsp?gallery_id=" + result_gallery_all.getString("gallery_id") + "><img src=" + image_url
-	                        + " height=\"100\" width=\"200\"" + "></a></td></tr>");
+	                        + " height=\"300\" width=\"300\"" + "></a></td></tr>");
 
 	            }
 	            out.println("</table></body></html>");

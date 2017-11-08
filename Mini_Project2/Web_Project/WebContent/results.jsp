@@ -142,7 +142,8 @@
 	                    out.println("<tr><td><a href=\"query3.jsp?image_id=" + tmp + "\">" + tmp + "</a>"
 	                            + "</td><td>" + result_artist_name.getString("title") + "</td><td>");
 	                    String image_url = result_artist_name.getString("link");
-	                    out.println("<img src=" + image_url + " height=\"100\" width=\"200\"" + "></td></tr>");
+	                    System.out.println("<a href=\"query3.jsp?image_id=" + tmp + "\">"+ "<img src=\"" + image_url + "\" height=\"100\" width=\"200\"" + "></a></td></tr>");
+	                    out.println("<a href=\"query3.jsp?image_id=" + tmp + "\">"+ "<img src=\"" + image_url + "\" height=\"100\" width=\"200\"" + "></a></td></tr>");
 
 	                }
 	                out.println("</table></body></html>");
