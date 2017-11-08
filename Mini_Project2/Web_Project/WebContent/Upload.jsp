@@ -21,10 +21,10 @@
   <form role="form" action="upload3.jsp" method="post"enctype="multipart/form-data">
     <div class="btn btn-success btn-file">
     <i class="fa fa-cloud-upload"></i>
-             Browse
-    <input type="file" name="file" />
+             Upload the file<br><br>
+    <input type="file" name="file" /><br><br>
     </div>
-    <button type="submit" value="submit" name='submit'>submit</button>`
+    <button type="submit" value="submit" name='submit'>submit</button>
     </form>
     
     

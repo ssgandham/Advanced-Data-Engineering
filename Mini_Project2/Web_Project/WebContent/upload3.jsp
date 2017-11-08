@@ -21,61 +21,64 @@
 
 	<%
 	    String session_username = (String) session.getAttribute("User");
+	ServletContext servlet_context = pageContext.getServletContext();
+	String path_file = servlet_context.getInitParameter("file-upload");	
+	    
+	    int file_size_max = 6000000 * 1024;
 	    File file;
-	    int file_size_max = 5000000 * 1024;
-	    int memory_size_max = 5000000 * 1024;
-	    ServletContext servlet_context = pageContext.getServletContext();
-	    String path_file = servlet_context.getInitParameter("file-upload");
+	    int memory_size_max = 6000000 * 1024;
+	    
+	    
 
-	    // Verify the content type
-	    String contentType = request.getContentType();
-	    if ((contentType.indexOf("multipart/form-data") >= 0)) {
+	    // The content type is verified
+	    String type_content = request.getContentType();
+	    if ((type_content.indexOf("multipart/form-data") >= 0)) {
 
-	        DiskFileItemFactory factory = new DiskFileItemFactory();
-	        // maximum size that will be stored in memory
-	        factory.setSizeThreshold(memory_size_max);
-	        // Location to save data that is larger than maxMemSize.
-	        factory.setRepository(new File("Mini_Project2/Web_Project/image"));
+	        DiskFileItemFactory instance_factory = new DiskFileItemFactory();
+	        // Maximum size which can be stored
+	        instance_factory.setSizeThreshold(memory_size_max);
+	        // The location where the data has to be stored
+	        instance_factory.setRepository(new File("Mini_Project2/Web_Project/image"));
 
-	        // Create a new file upload handler
-	        ServletFileUpload upload = new ServletFileUpload(factory);
-	        // maximum file size to be uploaded.
-	        upload.setSizeMax(file_size_max);
+	        // A new instance for upload is created
+	        ServletFileUpload instance_upload = new ServletFileUpload(instance_factory);
+	        // teh limit is set for the maximum file size upload
+	        instance_upload.setSizeMax(file_size_max);
 	        try {
-	            // Parse the request to get file items.
-	            List<FileItem> fileItems = upload.parseRequest(request);
+	            // The request is parsed to get the list of items
+	            List<FileItem> list_items_file = instance_upload.parseRequest(request);
 
-	            // Process the uploaded file items
-	            Iterator i = fileItems.iterator();
+	            // Upload file items is processed
+	            Iterator iterate = list_items_file.iterator();
 
-	            while (i.hasNext()) {
-	                FileItem fi = (FileItem) i.next();
-	                if (!fi.isFormField()) {
-	                    // Get the uploaded file parameters
-	                    String fieldName = fi.getFieldName();
-	                    String fileName = fi.getName();
-	                    boolean isInMemory = fi.isInMemory();
-	                    long sizeInBytes = fi.getSize();
-	                    // Write the file
-	                    if (fileName.lastIndexOf("/") >= 0) {
-	                        file = new File(path_file + fileName.substring(fileName.lastIndexOf("/")));
+	            while (iterate.hasNext()) {
+	                FileItem item_file = (FileItem) iterate.next();
+	                if (!item_file.isFormField()) {
+	                    // The file parameters are fetched
+	                    String str_fieldName = item_file.getFieldName();
+	                    String str_file_name = item_file.getName();
+	                    boolean bool_isInMemory = item_file.isInMemory();
+	                    long file_size_i_bytes = item_file.getSize();
+	                    // the data is written to the file
+	                    if (str_file_name.lastIndexOf("/") >= 0) {
+	                        file = new File(path_file + str_file_name.substring(str_file_name.lastIndexOf("/")));
 	                    } else {
-	                        file = new File(path_file +"/image"+fileName.substring(fileName.lastIndexOf("/") + 1));
+	                        file = new File(path_file +"/image"+str_file_name.substring(str_file_name.lastIndexOf("/") + 1));
 	                        System.out.println("File : " + file);
 	                    }
-	                    fi.write(file);
+	                    item_file.write(file);
 
-	                    request.setAttribute("Success", "Successfully Uploaded");
-	                    RequestDispatcher rd = request.getRequestDispatcher("/upload3.jsp");
-	                    rd.forward(request, response);
+	                    request.setAttribute("Success", "The file is uploaded successfully");
+	                    RequestDispatcher dispatcher_rd = request.getRequestDispatcher("/upload3.jsp");
+	                    dispatcher_rd.forward(request, response);
 	                }
 	            }
 
-	        } catch (Exception ex) {
-	            System.out.println(ex);
+	        } catch (Exception except) {
+	            System.out.println(except);
 	        }
 	    } else {
-	        request.setAttribute("Error", "Error!!");
+	        request.setAttribute("Error", "Error while Uploading the file");
 	        RequestDispatcher rd = request.getRequestDispatcher("/upload3.jsp");
 	        rd.forward(request, response);
 	    }
