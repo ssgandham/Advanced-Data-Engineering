@@ -79,7 +79,9 @@
 					type="submit" value="Query 14" name="submit"> <input
 					type="submit" value="Query 15" name="submit"> <input
 					type="submit" value="Query 16" name="submit"> <input
-					type="submit" value="Query 17" name="submit"></td>
+					type="submit" value="Query 17" name="submit"> <input
+					type="submit" value="Extra Credit A" name="submit"> <input
+					type="submit" value="Extra Credit B" name="submit"></td>
 			</tr>
 			<br>
 			<tr>
