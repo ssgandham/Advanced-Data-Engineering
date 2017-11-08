@@ -14,7 +14,8 @@
     <description>Location to store uploaded file</description>
     <param-name>file-upload</param-name>
     <param-value>
-             /Users/balaji/Documents/github/DataEngineering/Mini_Project2/Web_Project/image
+               /Users/balaji/Documents/github/DataEngineering/Mini_Project2/Web_Project/image
+            <!-- Mini_Project2/Web_Project/image -->
     </param-value>
 </context-param>
 </web-app>
