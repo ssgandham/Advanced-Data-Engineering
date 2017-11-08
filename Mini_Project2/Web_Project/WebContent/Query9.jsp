@@ -105,7 +105,7 @@
 	                    tmp++;
 	                }
 
-	                query += " where title='" + title + "'";
+	                query += " where title like '%" + title + "%'";
 	                System.out.println(query);
 	                PreparedStatement ps = test_connection.prepareStatement(query);
 

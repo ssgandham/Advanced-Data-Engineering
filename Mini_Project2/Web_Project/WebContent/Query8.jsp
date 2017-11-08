@@ -17,7 +17,7 @@
 	<form method="post" action="Query8.jsp">
 		<table>
 			<tr>
-				<td>Enter the Image IDe</td>
+				<td>Enter the Image ID</td>
 				<td><input type="text" name="input_image_id"></td>
 			</tr>
 			<tr>
