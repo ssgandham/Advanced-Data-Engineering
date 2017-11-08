@@ -29,7 +29,7 @@
 	            //String query_gallery_all = "select distinct gallery_id, name, description from gallery;";
 
 	            String query_gallery =
-	                    "select * from gallery a inner join image b on a.gallery_id=b.gallery_id where a.gallery_id="
+	                    "select * from gallery a left outer join image b on a.gallery_id=b.gallery_id where a.gallery_id="
 	                            + gallery_id + ";";
 	            Statement select_gallery_all = test_connection.createStatement();
 	            //Statement select_gallery = test_connection.createStatement();

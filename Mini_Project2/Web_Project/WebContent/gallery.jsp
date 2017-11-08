@@ -38,7 +38,7 @@
 	            out.print("<tr><th>Name</th><th>Description</th><th>Image</th></tr>");
 	            while (result_gallery_all.next()) {
 	                String query_gallery =
-	                        "select * from gallery a inner join image b on a.gallery_id=b.gallery_id where a.gallery_id="
+	                        "select * from gallery a left outer join image b on a.gallery_id=b.gallery_id where a.gallery_id="
 	                                + result_gallery_all.getString("gallery_id") + ";";
 	                System.out.println(query_gallery);
 	                ResultSet result_gallery = select_gallery.executeQuery(query_gallery);
