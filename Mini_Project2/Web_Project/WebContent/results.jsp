@@ -265,22 +265,24 @@
 
 	            if ("Query 15".equals(request.getParameter("submit"))) {
 	                String query_images_location =
-	                        "select distinct a.title, a.link, b.type, b.location, c.name as 'Artist Name' from image a inner join detail b on a.image_id=b.image_id inner join artist c on a.artist_id=c.artist_id where b.location='"
-	                                + image_location + "' or c.name='" + artist_name + "';";
+	                        "select * from image a inner join detail b on a.detail_id=b.detail_id where b.location = '"
+	                                + image_location + "';";
+	                                System.out.println(query_images_location);
 	                ResultSet result_image_location = select_artists.executeQuery(query_images_location);
 	                out.print(
 	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
 	                out.print(
-	                        "<tr><th>Title</th><th>Type</th><th>Location</th><th>Artist Name</th><th>Web</th></tr>");
+	                        "<tr><th>Title</th><th>Location</th><th>Image</th></tr>");
 	                while (result_image_location.next()) {
 	                    System.out.println("Went inside : ");
 	                    String tmp = result_image_location.getString("title").toString();
 	                    System.out.println(query_images_location);
 	                    //out.println(tmp);
 	                    out.println("<tr><td>" + result_image_location.getString("title") + "</td><td>"
-	                            + result_image_location.getString("type") + "</td><td>"
-	                            + result_image_location.getString("location") + "</td><td>"
-	                            + result_image_location.getString("Artist Name") + "</td><td>" + "<img src=\""
+	                            //+ result_image_location.getString("type") + "</td><td>"
+	                            + result_image_location.getString("location") + "</td><td>"+
+	                            //+ result_image_location.getString("Artist Name") + "</td><td>" + 
+	                            "<img src=\""
 	                            + result_image_location.getString("link")
 	                            + "\" height=\"100\" width=\"200 \"></td></tr>");
 	                }
@@ -290,6 +292,7 @@
 
 	            if ("Query 16".equals(request.getParameter("submit"))) {
 	                String query_artists_country = "select * from artist where country='" + artist_country + "';";
+	                System.out.println(query_artists_country);
 	                ResultSet result_artists_country = select_artists.executeQuery(query_artists_country);
 
 	                out.print(
