@@ -66,7 +66,7 @@
 	                String query_gallery = "select * from gallery;";
 	                String query_count = "select count(*) from gallery;";
 	                ResultSet result_artist_name = select_artists.executeQuery(query_gallery);
-	                ResultSet result_count = select_artists.executeQuery(query_gallery);
+	               // ResultSet result_count = select_artists.executeQuery(query_gallery);
 	                out.print(
 	                        "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
 
