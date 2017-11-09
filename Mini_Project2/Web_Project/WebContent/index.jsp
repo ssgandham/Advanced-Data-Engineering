@@ -10,12 +10,44 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<style>
+/*  https://www.w3schools.com/css/tryit.asp?filename=trycss_forms*/
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=submit] {
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
+    
+   
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+</style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
+<div>
 	<form method="post" action="results.jsp">
 		<table>
 			<tr>
@@ -58,13 +90,9 @@
 				<td><input type="text" name="gallery_name"></td>
 
 			</tr>
-			<tr>
-			<tr>
 
-			</tr>
-			</tr>
 			<tr>
-				<td><input type="submit" value="Query 1" name="submit">
+				<input type="submit" value="Query 1" name="submit">
 					<input type="submit" value="Query 2" name="submit"> <input
 					type="submit" value="Query 3" name="submit"> <input
 					type="submit" value="Query 5" name="submit"> <input
@@ -81,7 +109,7 @@
 					type="submit" value="Query 16" name="submit"> <input
 					type="submit" value="Query 17" name="submit"> <input
 					type="submit" value="Extra Credit A" name="submit"> <input
-					type="submit" value="Extra Credit B" name="submit"></td>
+					type="submit" value="Extra Credit B" name="submit">
 			</tr>
 			<br>
 			<tr>
@@ -92,7 +120,7 @@
 	</form>
 
 
-
+</div>
 
 </body>
 </html>
