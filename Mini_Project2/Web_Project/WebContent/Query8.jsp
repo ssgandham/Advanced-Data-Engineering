@@ -11,33 +11,32 @@
 <html>
 <style>
 input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    
-   
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
 
+input[type=submit] {
+	width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
 
 input[type=submit]:hover {
-    background-color: #45a049;
+	background-color: #45a049;
 }
+
 div {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
 }
 </style>
 <head>
@@ -45,17 +44,17 @@ div {
 <title>Insert title here</title>
 </head>
 <body>
-Delete an image from Gallery
+	Delete an image from Gallery
 	<form method="post" action="Query8.jsp">
 		<table>
 			<tr>
 				<td>Enter the Image ID</td>
 				<td><input type="text" name="input_image_id"></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>Enter the Image Name</td>
 				<td><input type="text" name="input_image_name"></td>
-			</tr>
+			</tr> -->
 			<tr>
 				<td><input type="submit" value="submit"></td>
 			</tr>
@@ -74,7 +73,8 @@ Delete an image from Gallery
 	        } else {
 	            String image_id = "", title = "";
 	            int tmp = 0;
-	            if (request.getParameter("input_image_id") != null) {
+	            if (request.getParameter("input_image_id") != null
+	                    || !request.getParameter("input_image_id").toString().equals("")) {
 	                image_id = request.getParameter("input_image_id");
 	                tmp++;
 	            }
@@ -100,7 +100,7 @@ Delete an image from Gallery
 	                if (!image_id.equals(""))
 	                    query += "image_id=?";
 	                if (!title.equals("")) {
-	                    if (tmp < 1)
+	                    if (tmp == 1)
 	                        query += "title=?;";
 	                    else
 	                        query += " or title=?;";
@@ -135,9 +135,9 @@ Delete an image from Gallery
 
 	                }
 	                // execute the preparedstatement
-		            preparedStmt.execute();
+	                preparedStmt.execute();
 	            }
-	           
+
 	            test_connection.close();
 	        }
 	    } catch (Exception e) {

@@ -72,10 +72,9 @@ table th {
 	            out.print(
 	                    "<!DOCTYPE html><html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table style=\"width:100%\">");
 
-	            out.print("<tr><th>Name</th><th>Description</th><th>Link</th></tr>");
+	            out.print("<tr><th>Image</th><th>Link</th></tr>");
 	            while (result_gallery_all.next()) {
-	                out.println("<tr><td>" + result_gallery_all.getString("name") + "</td><td>" + result_gallery_all.getString("description")
-	                        + "</td><td>");
+	                out.println("<tr><td>" + result_gallery_all.getString("title") + "</td><td>");
 	                System.out.println("Went inside till: ");
 	                String image_url = "";
 	                //if (result_gallery_all.next())
