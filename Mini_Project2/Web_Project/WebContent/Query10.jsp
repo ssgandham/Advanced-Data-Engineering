@@ -45,6 +45,7 @@ div {
 <title>Insert title here</title>
 </head>
 <body>
+Modify the details of an artist
 	<form method="post" action="Query10.jsp">
 		<table>
 			<tr>

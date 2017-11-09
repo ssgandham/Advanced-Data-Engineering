@@ -46,6 +46,9 @@ div {
 <title>Insert title here</title>
 </head>
 <body>
+
+Modify the details of an Image
+<br>
 	<form method="post" action="Query9.jsp">
 		<table>
 			<tr>

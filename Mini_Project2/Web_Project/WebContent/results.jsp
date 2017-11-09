@@ -301,8 +301,8 @@ table th {
 
 	            if ("Query 15".equals(request.getParameter("submit"))) {
 	                String query_images_location =
-	                        "select * from image a inner join detail b on a.detail_id=b.detail_id where b.location = '"
-	                                + image_location + "';";
+	                        "select * from image a inner join detail b on a.detail_id=b.detail_id where b.location like '%"
+	                                + image_location + "%';";
 	                                System.out.println(query_images_location);
 	                ResultSet result_image_location = select_artists.executeQuery(query_images_location);
 	                out.print(
@@ -327,7 +327,7 @@ table th {
 	            }
 
 	            if ("Query 16".equals(request.getParameter("submit"))) {
-	                String query_artists_country = "select * from artist where country='" + artist_country + "';";
+	                String query_artists_country = "select * from artist where country like '%" + artist_country + "%';";
 	                System.out.println(query_artists_country);
 	                ResultSet result_artists_country = select_artists.executeQuery(query_artists_country);
 

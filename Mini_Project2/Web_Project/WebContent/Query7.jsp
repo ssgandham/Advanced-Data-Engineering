@@ -45,6 +45,7 @@ div {
 <title>Insert title here</title>
 </head>
 <body>
+Add an Image to the Gallery
 	<form method="post" action="Query7.jsp">
 		<table>
 			<tr>

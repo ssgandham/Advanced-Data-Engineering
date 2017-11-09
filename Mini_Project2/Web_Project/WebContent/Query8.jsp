@@ -45,6 +45,7 @@ div {
 <title>Insert title here</title>
 </head>
 <body>
+Delete an image from Gallery
 	<form method="post" action="Query8.jsp">
 		<table>
 			<tr>
