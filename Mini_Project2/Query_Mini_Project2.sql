@@ -1,8 +1,11 @@
 create database db_mini_project2;
 use db_mini_project2;
 
+show tables;
 drop table artist;
 drop table detail;
+drop table gallery;
+drop table image;
 
 CREATE TABLE artist(
  artist_id int(11) NOT NULL AUTO_INCREMENT,
@@ -14,7 +17,7 @@ CREATE TABLE artist(
 );
 
 insert into artist values(1, 'ombalaji', 1993, 'India', 'Indian Artist');
-insert into artist values(2, 'john', 1960, 'USA Artist');
+insert into artist values(2, 'john', 1960, 'USA','USA Artist');
 insert into artist values(3,'Marry',1970,'Russia','Russian Artist');
 insert into artist values(4,'Priya', 1980, 'France','France Artist');
 insert into artist values(5,'Li', 1990, 'China','Chinese Artist');
@@ -80,7 +83,7 @@ PRIMARY KEY (`image_id`)
 
 insert into image values(1,'Img_India','http://www.ciarb.org/images/default-source/ciarb/our-network/landing/india-resized.jpg?sfvrsn=6',1,1,1);
 insert into image values(2,'Img_USA','https://www.google.com/search?q=usa&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj5gLGto5DXAhVJ42MKHWr6AyoQ_AUIDCgD&biw=1422&bih=781#imgrc=qup2Q7SbmYvwuM:',2,2,2);
-insert into image values(3,'Img_Russia','https://www.google.com/search?biw=1422&bih=781&tbm=isch&sa=1&ei=IeDyWbjSMeS4jAOT97X4DA&q=russia+&oq=russia+&gs_l=psy-ab.3..0l10.3226.4197.0.4691.7.7.0.0.0.0.489.792.3-1j1.2.0....0...1.1.64.psy-ab..6.1.488....0.URUzyI3T8GA#imgrc=UFxNlV_khd3G8M',3,3,3);
+insert into image values(3,'Img_Russia','https://www.hdwallpapers.in/walls/husqvarna_vitpilen_701_2018_4k-wide.jpg',3,3,3);
 insert into image values(4,'Img_France','https://www.google.com/search?q=france+map&source=lnms&tbm=isch&sa=X&ved=0ahUKEwihgYeRpJDXAhUM32MKHVpGAS8Q_AUICygC&biw=1422&bih=781#imgrc=JgafQ1vhMCXTgM:',4,4,4);
 insert into image values(5,'Img_China','https://www.travelchinaguide.com/images/map/china/china-map-9.jpg',5,5,5);
 insert into image values(6,'Img_Spain','https://www.roughguides.com/wp-content/uploads/2015/05/area-map-of-spain.png',6,6,6);
